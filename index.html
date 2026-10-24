@@ -1167,6 +1167,26 @@ What am I living for
     // 페이지 로드시 첫 번째 곡 세팅
     loadTrack(0);
 </script>
-    <!-- 맨 마지막 줄에 문서 마감 태그 추가 -->
+    <!-- 카드 열기 스크립트 (여기에 추가) -->
+    <script>
+        function toggleCard(card) {
+            const silhouette = card.querySelector('.silhouette-layer');
+            const content = card.querySelector('.content-layer');
+            if (!silhouette || !content) return;
+
+            const opened = card.dataset.opened === 'true';
+
+            if (opened) {
+                silhouette.classList.remove('opacity-0', 'pointer-events-none');
+                content.classList.add('opacity-0');
+                card.dataset.opened = 'false';
+            } else {
+                silhouette.classList.add('opacity-0', 'pointer-events-none');
+                content.classList.remove('opacity-0');
+                card.dataset.opened = 'true';
+            }
+        }
+    </script>
+
 </body>
 </html>
