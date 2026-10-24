@@ -1187,6 +1187,30 @@ What am I living for
             }
         }
     </script>
+<script>
+    function openSecretModal() {
+        const modal = document.getElementById('secretModal');
+        if (!modal) return;
+        modal.classList.remove('hidden');
+        // hidden을 뺀 직후 한 프레임 뒤에 투명도를 풀어야 페이드 효과가 나와요
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => modal.classList.remove('opacity-0'));
+        });
+        document.body.style.overflow = 'hidden';
+    }
 
+    function closeSecretModal() {
+        const modal = document.getElementById('secretModal');
+        if (!modal) return;
+        modal.classList.add('opacity-0');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+        document.body.style.overflow = '';
+    }
+
+    function closeSecretModalOnBackdrop(event) {
+        // 팝업 안쪽이 아니라 어두운 배경을 눌렀을 때만 닫기
+        if (event.target === event.currentTarget) closeSecretModal();
+    }
+</script>
 </body>
 </html>
